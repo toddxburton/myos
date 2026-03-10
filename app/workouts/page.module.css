@@ -1,0 +1,25 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--space-8);
+}
+
+.titleZone {
+  flex: 0 0 20dvh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 45px;
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}

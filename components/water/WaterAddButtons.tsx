@@ -1,6 +1,6 @@
 'use client'
 
-import { useOptimistic, useState, useTransition } from 'react'
+import { useOptimistic, useState, useTransition, useRef, useEffect } from 'react'
 import { addWater } from '@/app/water/actions'
 import styles from './WaterAddButtons.module.css'
 
@@ -13,9 +13,23 @@ export default function WaterAddButtons({ todayTotal }: Props) {
     todayTotal,
     (state: number, amount: number) => state + amount
   )
-  const [customMode, setCustomMode] = useState(false)
+  const [customOpen, setCustomOpen] = useState(false)
   const [customValue, setCustomValue] = useState('')
   const [, startTransition] = useTransition()
+  const customRef = useRef<HTMLDivElement>(null)
+
+  // Close tooltip on outside click
+  useEffect(() => {
+    if (!customOpen) return
+    const handler = (e: MouseEvent) => {
+      if (customRef.current && !customRef.current.contains(e.target as Node)) {
+        setCustomOpen(false)
+        setCustomValue('')
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [customOpen])
 
   const handleAdd = (oz: number) => {
     startTransition(async () => {
@@ -28,37 +42,45 @@ export default function WaterAddButtons({ todayTotal }: Props) {
     const oz = parseFloat(customValue)
     if (!isNaN(oz) && oz > 0) {
       handleAdd(oz)
-      setCustomMode(false)
+      setCustomOpen(false)
       setCustomValue('')
     }
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.pills}>
-        <button className={styles.pill} onClick={() => handleAdd(8)}>
-          <span>+</span> 8oz
+    <div className={styles.pills}>
+      <button className={styles.pill} onClick={() => handleAdd(8)}>
+        <span>+</span> 8oz
+      </button>
+      <button className={styles.pill} onClick={() => handleAdd(12)}>
+        <span>+</span> 12oz
+      </button>
+      <button className={styles.pill} onClick={() => handleAdd(16)}>
+        <span>+</span> 16oz
+      </button>
+
+
+      <div className={styles.customWrapper} ref={customRef}>
+        <button className={styles.pill} onClick={() => setCustomOpen((o) => !o)}>
+          <span>+</span> custom
         </button>
-        <button className={styles.pill} onClick={() => handleAdd(16)}>
-          <span>+</span> 16oz
-        </button>
-        {customMode ? (
-          <div className={styles.customInput}>
+        {customOpen && (
+          <div className={styles.tooltip}>
             <input
               type="number"
               value={customValue}
               onChange={(e) => setCustomValue(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleCustomSubmit()}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleCustomSubmit()
+                if (e.key === 'Escape') { setCustomOpen(false); setCustomValue('') }
+              }}
               placeholder="oz"
               autoFocus
             />
-            <button className={styles.pill} onClick={handleCustomSubmit}>Add</button>
-            <button className={styles.cancel} onClick={() => { setCustomMode(false); setCustomValue('') }}>✕</button>
+            <button className={styles.tooltipAdd} onClick={handleCustomSubmit}>
+              Add
+            </button>
           </div>
-        ) : (
-          <button className={styles.pill} onClick={() => setCustomMode(true)}>
-            <span>+</span> custom
-          </button>
         )}
       </div>
     </div>
