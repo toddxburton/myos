@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
 import '@/styles/globals.css'
 
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="app-shell">
+          <AppHeader />
           <main className="page-content">
             {children}
           </main>
