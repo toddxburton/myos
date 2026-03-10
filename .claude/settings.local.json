@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "mcp__figma-remote-mcp__get_design_context",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

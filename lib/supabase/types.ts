@@ -5,81 +5,98 @@
 
 export interface Database {
   public: {
+    Views: Record<string, never>
+    Functions: Record<string, never>
     Tables: {
       water_logs: {
-        Row:    { id: string; date: string; oz: number; logged_at: string; created_at: string }
-        Insert: { id?: string; date: string; oz: number; logged_at?: string; created_at?: string }
-        Update: { id?: string; date?: string; oz?: number; logged_at?: string; created_at?: string }
+        Row:          { id: string; date: string; oz: number; logged_at: string; created_at: string }
+        Insert:       { id?: string; date: string; oz: number; logged_at?: string; created_at?: string }
+        Update:       { id?: string; date?: string; oz?: number; logged_at?: string; created_at?: string }
+        Relationships: []
       }
       water_goals: {
-        Row:    { id: string; daily_goal_oz: number; effective_from: string; created_at: string }
-        Insert: { id?: string; daily_goal_oz: number; effective_from?: string; created_at?: string }
-        Update: { id?: string; daily_goal_oz?: number; effective_from?: string; created_at?: string }
+        Row:          { id: string; daily_goal_oz: number; effective_from: string; created_at: string }
+        Insert:       { id?: string; daily_goal_oz: number; effective_from?: string; created_at?: string }
+        Update:       { id?: string; daily_goal_oz?: number; effective_from?: string; created_at?: string }
+        Relationships: []
       }
       workout_sessions: {
-        Row:    { id: string; date: string; name: string | null; notes: string | null; created_at: string }
-        Insert: { id?: string; date: string; name?: string | null; notes?: string | null; created_at?: string }
-        Update: { id?: string; date?: string; name?: string | null; notes?: string | null; created_at?: string }
+        Row:          { id: string; date: string; name: string | null; notes: string | null; created_at: string }
+        Insert:       { id?: string; date: string; name?: string | null; notes?: string | null; created_at?: string }
+        Update:       { id?: string; date?: string; name?: string | null; notes?: string | null; created_at?: string }
+        Relationships: []
       }
       exercise_library: {
-        Row:    { id: string; name: string; category: string | null; notes: string | null; created_at: string }
-        Insert: { id?: string; name: string; category?: string | null; notes?: string | null; created_at?: string }
-        Update: { id?: string; name?: string; category?: string | null; notes?: string | null; created_at?: string }
+        Row:          { id: string; name: string; category: string | null; notes: string | null; created_at: string }
+        Insert:       { id?: string; name: string; category?: string | null; notes?: string | null; created_at?: string }
+        Update:       { id?: string; name?: string; category?: string | null; notes?: string | null; created_at?: string }
+        Relationships: []
       }
       workout_exercises: {
-        Row:    { id: string; session_id: string; exercise_id: string; order: number; created_at: string }
-        Insert: { id?: string; session_id: string; exercise_id: string; order?: number; created_at?: string }
-        Update: { id?: string; session_id?: string; exercise_id?: string; order?: number; created_at?: string }
+        Row:          { id: string; session_id: string; exercise_id: string; order: number; created_at: string }
+        Insert:       { id?: string; session_id: string; exercise_id: string; order?: number; created_at?: string }
+        Update:       { id?: string; session_id?: string; exercise_id?: string; order?: number; created_at?: string }
+        Relationships: []
       }
       exercise_sets: {
-        Row:    { id: string; workout_exercise_id: string; set_number: number; reps: number | null; weight_lbs: number | null; created_at: string }
-        Insert: { id?: string; workout_exercise_id: string; set_number: number; reps?: number | null; weight_lbs?: number | null; created_at?: string }
-        Update: { id?: string; workout_exercise_id?: string; set_number?: number; reps?: number | null; weight_lbs?: number | null; created_at?: string }
+        Row:          { id: string; workout_exercise_id: string; set_number: number; reps: number | null; weight_lbs: number | null; created_at: string }
+        Insert:       { id?: string; workout_exercise_id: string; set_number: number; reps?: number | null; weight_lbs?: number | null; created_at?: string }
+        Update:       { id?: string; workout_exercise_id?: string; set_number?: number; reps?: number | null; weight_lbs?: number | null; created_at?: string }
+        Relationships: []
       }
       cardio_entries: {
-        Row:    { id: string; session_id: string; type: string; duration_minutes: number; distance_miles: number | null; created_at: string }
-        Insert: { id?: string; session_id: string; type: string; duration_minutes: number; distance_miles?: number | null; created_at?: string }
-        Update: { id?: string; session_id?: string; type?: string; duration_minutes?: number; distance_miles?: number | null; created_at?: string }
+        Row:          { id: string; session_id: string; type: string; duration_minutes: number; distance_miles: number | null; created_at: string }
+        Insert:       { id?: string; session_id: string; type: string; duration_minutes: number; distance_miles?: number | null; created_at?: string }
+        Update:       { id?: string; session_id?: string; type?: string; duration_minutes?: number; distance_miles?: number | null; created_at?: string }
+        Relationships: []
       }
       fruit_logs: {
-        Row:    { id: string; date: string; item_name: string; servings: number; created_at: string }
-        Insert: { id?: string; date: string; item_name: string; servings?: number; created_at?: string }
-        Update: { id?: string; date?: string; item_name?: string; servings?: number; created_at?: string }
+        Row:          { id: string; date: string; item_name: string; servings: number; created_at: string }
+        Insert:       { id?: string; date: string; item_name: string; servings?: number; created_at?: string }
+        Update:       { id?: string; date?: string; item_name?: string; servings?: number; created_at?: string }
+        Relationships: []
       }
       vegetable_logs: {
-        Row:    { id: string; date: string; item_name: string; servings: number; created_at: string }
-        Insert: { id?: string; date: string; item_name: string; servings?: number; created_at?: string }
-        Update: { id?: string; date?: string; item_name?: string; servings?: number; created_at?: string }
+        Row:          { id: string; date: string; item_name: string; servings: number; created_at: string }
+        Insert:       { id?: string; date: string; item_name: string; servings?: number; created_at?: string }
+        Update:       { id?: string; date?: string; item_name?: string; servings?: number; created_at?: string }
+        Relationships: []
       }
       vitamin_definitions: {
-        Row:    { id: string; name: string; active: boolean; created_at: string }
-        Insert: { id?: string; name: string; active?: boolean; created_at?: string }
-        Update: { id?: string; name?: string; active?: boolean; created_at?: string }
+        Row:          { id: string; name: string; active: boolean; created_at: string }
+        Insert:       { id?: string; name: string; active?: boolean; created_at?: string }
+        Update:       { id?: string; name?: string; active?: boolean; created_at?: string }
+        Relationships: []
       }
       vitamin_logs: {
-        Row:    { id: string; date: string; vitamin_id: string; taken: boolean; created_at: string }
-        Insert: { id?: string; date: string; vitamin_id: string; taken?: boolean; created_at?: string }
-        Update: { id?: string; date?: string; vitamin_id?: string; taken?: boolean; created_at?: string }
+        Row:          { id: string; date: string; vitamin_id: string; taken: boolean; created_at: string }
+        Insert:       { id?: string; date: string; vitamin_id: string; taken?: boolean; created_at?: string }
+        Update:       { id?: string; date?: string; vitamin_id?: string; taken?: boolean; created_at?: string }
+        Relationships: []
       }
       habit_overrides: {
-        Row:    { id: string; date: string; habit_key: string; value: boolean; created_at: string }
-        Insert: { id?: string; date: string; habit_key: string; value: boolean; created_at?: string }
-        Update: { id?: string; date?: string; habit_key?: string; value?: boolean; created_at?: string }
+        Row:          { id: string; date: string; habit_key: string; value: boolean; created_at: string }
+        Insert:       { id?: string; date: string; habit_key: string; value: boolean; created_at?: string }
+        Update:       { id?: string; date?: string; habit_key?: string; value?: boolean; created_at?: string }
+        Relationships: []
       }
       flashcards: {
-        Row:    { id: string; french: string; english: string; pronunciation_note: string | null; created_at: string }
-        Insert: { id?: string; french: string; english: string; pronunciation_note?: string | null; created_at?: string }
-        Update: { id?: string; french?: string; english?: string; pronunciation_note?: string | null; created_at?: string }
+        Row:          { id: string; french: string; english: string; pronunciation_note: string | null; created_at: string }
+        Insert:       { id?: string; french: string; english: string; pronunciation_note?: string | null; created_at?: string }
+        Update:       { id?: string; french?: string; english?: string; pronunciation_note?: string | null; created_at?: string }
+        Relationships: []
       }
       review_logs: {
-        Row:    { id: string; card_id: string; direction: 'fr_to_en' | 'en_to_fr'; rating: 'again' | 'hard' | 'good' | 'easy'; reviewed_at: string; next_review_at: string; ease_factor: number; created_at: string }
-        Insert: { id?: string; card_id: string; direction: 'fr_to_en' | 'en_to_fr'; rating: 'again' | 'hard' | 'good' | 'easy'; reviewed_at?: string; next_review_at: string; ease_factor?: number; created_at?: string }
-        Update: { id?: string; card_id?: string; direction?: 'fr_to_en' | 'en_to_fr'; rating?: 'again' | 'hard' | 'good' | 'easy'; reviewed_at?: string; next_review_at?: string; ease_factor?: number; created_at?: string }
+        Row:          { id: string; card_id: string; direction: 'fr_to_en' | 'en_to_fr'; rating: 'again' | 'hard' | 'good' | 'easy'; reviewed_at: string; next_review_at: string; ease_factor: number; created_at: string }
+        Insert:       { id?: string; card_id: string; direction: 'fr_to_en' | 'en_to_fr'; rating: 'again' | 'hard' | 'good' | 'easy'; reviewed_at?: string; next_review_at: string; ease_factor?: number; created_at?: string }
+        Update:       { id?: string; card_id?: string; direction?: 'fr_to_en' | 'en_to_fr'; rating?: 'again' | 'hard' | 'good' | 'easy'; reviewed_at?: string; next_review_at?: string; ease_factor?: number; created_at?: string }
+        Relationships: []
       }
       mood_checkins: {
-        Row:    { id: string; date: string; period: 'morning' | 'evening'; energy_level: number; emotion: string; intention: string | null; reflection: string | null; gratitude: string | null; logged_at: string; created_at: string }
-        Insert: { id?: string; date: string; period: 'morning' | 'evening'; energy_level: number; emotion: string; intention?: string | null; reflection?: string | null; gratitude?: string | null; logged_at?: string; created_at?: string }
-        Update: { id?: string; date?: string; period?: 'morning' | 'evening'; energy_level?: number; emotion?: string; intention?: string | null; reflection?: string | null; gratitude?: string | null; logged_at?: string; created_at?: string }
+        Row:          { id: string; date: string; period: 'morning' | 'evening'; energy_level: number; emotion: string; intention: string | null; reflection: string | null; gratitude: string | null; logged_at: string; created_at: string }
+        Insert:       { id?: string; date: string; period: 'morning' | 'evening'; energy_level: number; emotion: string; intention?: string | null; reflection?: string | null; gratitude?: string | null; logged_at?: string; created_at?: string }
+        Update:       { id?: string; date?: string; period?: 'morning' | 'evening'; energy_level?: number; emotion?: string; intention?: string | null; reflection?: string | null; gratitude?: string | null; logged_at?: string; created_at?: string }
+        Relationships: []
       }
     }
   }
