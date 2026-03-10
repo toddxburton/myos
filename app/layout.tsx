@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Personal life dashboard',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
+    statusBarStyle: 'default',
     title: 'myOS',
   },
 }

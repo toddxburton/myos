@@ -5,33 +5,33 @@
 
 :root {
   /* ----------------------------------------------------------
-     Colors — Base palette
+     Colors — Light theme
   ---------------------------------------------------------- */
-  --color-bg:            #0f0f12;
-  --color-surface:       #1a1a21;
-  --color-surface-raised:#222230;
-  --color-border:        #2e2e3d;
-  --color-border-subtle: #1f1f2b;
+  --color-bg:             #ffffff;
+  --color-surface:        #f7f7f7;
+  --color-surface-raised: #ececec;
+  --color-border:         #e0e0e0;
+  --color-border-subtle:  #f0f0f0;
 
-  --color-text-primary:  #f0f0f5;
-  --color-text-secondary:#9090a8;
-  --color-text-tertiary: #5a5a72;
+  --color-text-primary:   #000000;
+  --color-text-secondary: #555555;
+  --color-text-tertiary:  #999999;
 
-  --color-accent-blue:   #4f8ef7;
-  --color-accent-teal:   #3ecfcf;
-  --color-accent-green:  #4cd97b;
-  --color-accent-yellow: #f5c842;
-  --color-accent-orange: #f5834a;
-  --color-accent-red:    #f55a5a;
-  --color-accent-purple: #a066f5;
+  --color-accent-blue:    #2563eb;
+  --color-accent-teal:    #0d9488;
+  --color-accent-green:   #16a34a;
+  --color-accent-yellow:  #ca8a04;
+  --color-accent-orange:  #ea580c;
+  --color-accent-red:     #dc2626;
+  --color-accent-purple:  #9333ea;
 
   /* Semantic aliases */
-  --color-water:         var(--color-accent-blue);
-  --color-workout:       var(--color-accent-orange);
-  --color-habit:         var(--color-accent-green);
-  --color-french:        #5c9ef7;
-  --color-mood:          var(--color-accent-purple);
-  --color-today:         var(--color-accent-yellow);
+  --color-water:   var(--color-accent-blue);
+  --color-workout: var(--color-accent-orange);
+  --color-habit:   var(--color-accent-green);
+  --color-french:  var(--color-accent-blue);
+  --color-mood:    var(--color-accent-purple);
+  --color-today:   var(--color-accent-yellow);
 
   /* ----------------------------------------------------------
      Spacing scale (4px base)
@@ -69,35 +69,37 @@
   --text-xl:   20px;
   --text-2xl:  24px;
   --text-3xl:  30px;
+  --text-4xl:  43px;
 
   --leading-tight:  1.2;
   --leading-normal: 1.5;
 
-  --weight-regular: 400;
-  --weight-medium:  500;
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
   --weight-semibold: 600;
-  --weight-bold:    700;
+  --weight-bold:     700;
 
   /* ----------------------------------------------------------
      Shadows
   ---------------------------------------------------------- */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.5);
-  --shadow-lg:  0 8px 24px rgba(0,0,0,0.6);
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.10);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.12);
 
   /* ----------------------------------------------------------
      Layout
   ---------------------------------------------------------- */
-  --nav-height:       64px;
-  --header-height:    56px;
+  --nav-height:        64px;
+  --header-height:     56px;
   --max-content-width: 430px;
 
   /* ----------------------------------------------------------
      Transitions
   ---------------------------------------------------------- */
-  --transition-fast:   120ms ease;
-  --transition-base:   200ms ease;
-  --transition-slow:   350ms ease;
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 350ms ease;
 
   /* ----------------------------------------------------------
      Touch targets
