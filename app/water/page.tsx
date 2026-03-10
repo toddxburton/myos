@@ -2,11 +2,13 @@ import { createClient } from '@/lib/supabase/server'
 import WaterAddButtons from '@/components/water/WaterAddButtons'
 import styles from './page.module.css'
 
-const DAY_LABELS = ['su', 'm', 't', 'w', 'tr', 'f', 's']
+// Mon=0 … Sun=6
+const WEEK_LABELS = ['m', 't', 'w', 'tr', 'f', 's', 'su']
 
 export default async function WaterPage() {
   const supabase = await createClient()
-  const today = new Date().toISOString().split('T')[0]
+  const now = new Date()
+  const today = now.toISOString().split('T')[0]
 
   // Today's total
   const { data: todayLogs } = await supabase
@@ -26,16 +28,22 @@ export default async function WaterPage() {
 
   const goal = goals?.[0]?.daily_goal_oz ?? 64
 
-  // Last 7 days
-  const weekStart = new Date()
-  weekStart.setDate(weekStart.getDate() - 6)
-  const weekStartStr = weekStart.toISOString().split('T')[0]
+  // Current week Mon–Sun
+  const dayOfWeek = now.getDay() // 0=Sun
+  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek
+  const monday = new Date(now)
+  monday.setDate(now.getDate() + mondayOffset)
+  const mondayStr = monday.toISOString().split('T')[0]
+
+  const sunday = new Date(monday)
+  sunday.setDate(monday.getDate() + 6)
+  const sundayStr = sunday.toISOString().split('T')[0]
 
   const { data: weekLogs } = await supabase
     .from('water_logs')
     .select('date, oz')
-    .gte('date', weekStartStr)
-    .lte('date', today)
+    .gte('date', mondayStr)
+    .lte('date', sundayStr)
 
   const weekByDate: Record<string, number> = {}
   weekLogs?.forEach((l) => {
@@ -43,12 +51,13 @@ export default async function WaterPage() {
   })
 
   const weekData = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date()
-    d.setDate(d.getDate() - (6 - i))
+    const d = new Date(monday)
+    d.setDate(monday.getDate() + i)
     const dateStr = d.toISOString().split('T')[0]
+    const isFuture = dateStr > today
     return {
-      day: DAY_LABELS[d.getDay()],
-      oz: weekByDate[dateStr] != null ? Math.round(weekByDate[dateStr]) : null,
+      day: WEEK_LABELS[i],
+      oz: !isFuture && weekByDate[dateStr] != null ? Math.round(weekByDate[dateStr]) : null,
       isToday: dateStr === today,
     }
   })
@@ -61,8 +70,11 @@ export default async function WaterPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Water</h1>
+      <div className={styles.titleZone}>
+        <h1 className={styles.title}>Water</h1>
+      </div>
 
+      <div className={styles.content}>
       <section className={styles.section}>
         <p className={styles.sectionLabel}>Add</p>
         <WaterAddButtons todayTotal={todayTotal} />
@@ -89,6 +101,7 @@ export default async function WaterPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   )
 }
