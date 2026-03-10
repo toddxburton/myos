@@ -1,0 +1,88 @@
+/* ============================================================
+   Globals — myOS Life Dashboard
+   Reset, base styles, typography scale
+   ============================================================ */
+
+@import './tokens.css';
+
+/* ----------------------------------------------------------
+   Reset
+---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  min-height: 100dvh;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ----------------------------------------------------------
+   App shell — contains content above bottom nav
+---------------------------------------------------------- */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.page-content {
+  flex: 1;
+  padding: var(--space-4);
+  padding-bottom: calc(var(--nav-height) + var(--space-6) + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+
+/* ----------------------------------------------------------
+   Typography helpers
+---------------------------------------------------------- */
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-text-tertiary);
+}
