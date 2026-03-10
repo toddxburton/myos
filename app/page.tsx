@@ -1,16 +1,18 @@
-import PageHeader from '@/components/layout/PageHeader'
+import AppHeader from '@/components/layout/AppHeader'
+import Greeting from '@/components/today/Greeting'
+import WeatherWidget from '@/components/today/WeatherWidget'
+import QuickActions from '@/components/today/QuickActions'
+import styles from './page.module.css'
 
 export default function TodayPage() {
-  const today = new Date().toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-  })
-
   return (
-    <>
-      <PageHeader title="Today" subtitle={today} />
-      {/* Summary cards will be wired in Step 8 */}
-    </>
+    <div className={styles.page}>
+      <AppHeader />
+      <div className={styles.body}>
+        <Greeting />
+        <WeatherWidget />
+        <QuickActions />
+      </div>
+    </div>
   )
 }
