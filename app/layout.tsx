@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import type { Metadata, Viewport } from 'next'
 import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
