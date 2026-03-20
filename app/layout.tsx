@@ -9,9 +9,10 @@ import '@/styles/globals.css'
 export const metadata: Metadata = {
   title: 'myOS',
   description: 'Personal life dashboard',
+  manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default',
+    statusBarStyle: 'black-translucent',
     title: 'myOS',
   },
 }
