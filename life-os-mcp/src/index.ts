@@ -37,16 +37,6 @@ export default {
       return new Response('Server misconfigured', { status: 500 })
     }
 
-    // Bearer token or API key auth
-    const authHeader = request.headers.get('Authorization') ?? ''
-    const bearerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader
-    const apiKeyHeader = request.headers.get('X-API-Key') ?? ''
-    const token = bearerToken || apiKeyHeader
-    if (token !== config.MCP_API_KEY) {
-      const debugHeaders: Record<string, string> = {}
-      request.headers.forEach((v, k) => { debugHeaders[k] = v })
-      return new Response(JSON.stringify({ error: 'Unauthorized', received_headers: debugHeaders }), { status: 401, headers: { 'Content-Type': 'application/json' } })
-    }
 
     // Build server and register all tools
     const server = createServer()
