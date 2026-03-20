@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import { createClient } from '@/lib/supabase/server'
 import HabitsTracker from '@/components/habits/HabitsTracker'
 import styles from './page.module.css'

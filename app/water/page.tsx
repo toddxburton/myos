@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import { createClient } from '@/lib/supabase/server'
 import WaterAddButtons from '@/components/water/WaterAddButtons'
 import styles from './page.module.css'
