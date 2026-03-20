@@ -30,6 +30,25 @@ export async function updateWaterGoal(oz: number) {
   revalidatePath('/water')
 }
 
+export async function addVitamin(name: string): Promise<{ id: string; name: string }> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('vitamin_definitions')
+    .insert({ name: name.trim(), active: true })
+    .select('id, name')
+    .single()
+  revalidatePath('/settings')
+  revalidatePath('/habits')
+  return data!
+}
+
+export async function deleteVitamin(id: string) {
+  const supabase = await createClient()
+  await supabase.from('vitamin_definitions').update({ active: false }).eq('id', id)
+  revalidatePath('/settings')
+  revalidatePath('/habits')
+}
+
 export async function updateHabitGoal(key: string, value: number) {
   const supabase = await createClient()
   await supabase
