@@ -80,6 +80,12 @@ export interface Database {
         Update:       { id?: string; date?: string; habit_key?: string; value?: boolean; created_at?: string }
         Relationships: []
       }
+      cardio_logs: {
+        Row:          { id: string; date: string; type: string; duration_minutes: number; created_at: string }
+        Insert:       { id?: string; date: string; type: string; duration_minutes: number; created_at?: string }
+        Update:       { id?: string; date?: string; type?: string; duration_minutes?: number; created_at?: string }
+        Relationships: []
+      }
       flashcards: {
         Row:          { id: string; french: string; english: string; pronunciation_note: string | null; created_at: string }
         Insert:       { id?: string; french: string; english: string; pronunciation_note?: string | null; created_at?: string }
@@ -96,6 +102,12 @@ export interface Database {
         Row:          { id: string; date: string; period: 'morning' | 'evening'; energy_level: number; emotion: string; intention: string | null; reflection: string | null; gratitude: string | null; logged_at: string; created_at: string }
         Insert:       { id?: string; date: string; period: 'morning' | 'evening'; energy_level: number; emotion: string; intention?: string | null; reflection?: string | null; gratitude?: string | null; logged_at?: string; created_at?: string }
         Update:       { id?: string; date?: string; period?: 'morning' | 'evening'; energy_level?: number; emotion?: string; intention?: string | null; reflection?: string | null; gratitude?: string | null; logged_at?: string; created_at?: string }
+        Relationships: []
+      }
+      habit_goals: {
+        Row:          { key: string; value: number; updated_at: string }
+        Insert:       { key: string; value: number; updated_at?: string }
+        Update:       { key?: string; value?: number; updated_at?: string }
         Relationships: []
       }
     }
@@ -116,6 +128,7 @@ export type VegetableLog      = Tables['vegetable_logs']['Row']
 export type VitaminDefinition = Tables['vitamin_definitions']['Row']
 export type VitaminLog        = Tables['vitamin_logs']['Row']
 export type HabitOverride     = Tables['habit_overrides']['Row']
+export type CardioLog         = Tables['cardio_logs']['Row']
 export type Flashcard         = Tables['flashcards']['Row']
 export type ReviewLog         = Tables['review_logs']['Row']
 export type MoodCheckin       = Tables['mood_checkins']['Row']

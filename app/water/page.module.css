@@ -7,9 +7,7 @@
 /* Title sits at the same Y position as the home page greeting
    by using a flex zone that fills proportional space above it */
 .titleZone {
-  flex: 0 0 20dvh;
-  display: flex;
-  align-items: flex-end;
+  padding-top: 30px;
   padding-bottom: 45px;
 }
 
