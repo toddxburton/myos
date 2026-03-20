@@ -1,0 +1,291 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+/* ── Section layout (matches water page) ─────────────────── */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.sectionLabel {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+}
+
+.sectionDone {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+.sectionLocked {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  opacity: 0.5;
+}
+
+/* ── Action buttons ──────────────────────────────────────── */
+
+.logBtn {
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0 var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  min-height: var(--tap-target-min);
+  white-space: nowrap;
+}
+
+.editBtn {
+  background: transparent;
+  color: var(--color-text-tertiary);
+  border: none;
+  padding: 0;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+/* ── Form ────────────────────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.fieldLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.optional {
+  font-weight: var(--weight-regular);
+  color: var(--color-text-tertiary);
+}
+
+/* Energy picker */
+
+.energyRow {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: var(--space-1);
+}
+
+.energyBtn {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-target-min);
+  transition: all var(--transition-fast);
+}
+
+.energyBtnActive {
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+/* Emotion picker */
+
+.emotionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+
+.emotionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-1);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: var(--tap-target-min);
+}
+
+.emotionBtnActive {
+  border-color: var(--color-text-primary);
+  background: var(--color-text-primary);
+}
+
+.emotionBtnActive .emotionLabel {
+  color: var(--color-bg);
+}
+
+.emotionEmoji {
+  font-size: var(--text-xl);
+}
+
+.emotionLabel {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Textarea */
+
+.textarea {
+  width: 100%;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  resize: none;
+  line-height: var(--leading-normal);
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-text-primary);
+}
+
+/* Form actions */
+
+.formActions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.cancelBtn {
+  flex: 1;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  font-size: var(--text-base);
+  cursor: pointer;
+  min-height: var(--tap-target-min);
+}
+
+.saveBtn {
+  flex: 2;
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  min-height: var(--tap-target-min);
+  transition: opacity var(--transition-fast);
+}
+
+.saveBtn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* ── Summary ─────────────────────────────────────────────── */
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.summaryRow {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summaryLabel {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.summaryValue {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+}
+
+.summaryText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+}
+
+.summaryTextLabel {
+  color: var(--color-text-tertiary);
+  margin-right: var(--space-1);
+}
+
+/* ── Locked state ────────────────────────────────────────── */
+
+.lockedSection {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Week history (matches water page) ───────────────────── */
+
+.weekRow {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.dayCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.dayLabel {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.dayValue {
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
+}
+
+.today .dayLabel,
+.today .dayValue {
+  font-weight: var(--weight-semibold);
+}
