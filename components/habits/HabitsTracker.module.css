@@ -1,0 +1,117 @@
+.tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.pills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pillRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 12px;
+  background-color: var(--color-surface-raised);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  transition: background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.pill:active {
+  background-color: var(--color-border);
+}
+
+.pill:disabled {
+  opacity: 0.5;
+}
+
+.pillDone {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+.pillDone:active {
+  background-color: var(--color-text-secondary);
+}
+
+/* Sections */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.sectionLabel {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+}
+
+.logEntry {
+  font-size: var(--text-base);
+  font-weight: var(--weight-light);
+  color: var(--color-text-primary);
+}
+
+/* Week review */
+.weekRow {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.dayCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.dayLabel {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.dayValue {
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
+}
+
+.today .dayLabel,
+.today .dayValue {
+  font-weight: var(--weight-semibold);
+}
+
+/* Weekly progress grid */
+.progressGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-6);
+}
+
+.progressItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.progressLabel {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.progressValue {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,74 @@
+.wrapper {
+  position: relative;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 12px;
+  background-color: var(--color-surface-raised);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  transition: background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.pill:active {
+  background-color: var(--color-border);
+}
+
+.pillActive {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+.pillActive:active {
+  background-color: var(--color-text-secondary);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 20;
+  overflow: hidden;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.checkRow:hover {
+  background-color: var(--color-surface-raised);
+}
+
+.checkRow input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkRow span {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.empty {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
