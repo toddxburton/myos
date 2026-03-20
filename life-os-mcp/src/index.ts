@@ -23,6 +23,11 @@ export default {
       return new Response('Not found', { status: 404 })
     }
 
+    // Only POST is supported — return 405 for GET/SSE attempts
+    if (request.method !== 'POST') {
+      return new Response('Method Not Allowed', { status: 405, headers: { Allow: 'POST' } })
+    }
+
     // Validate environment
     let config
     try {
@@ -38,7 +43,9 @@ export default {
     const apiKeyHeader = request.headers.get('X-API-Key') ?? ''
     const token = bearerToken || apiKeyHeader
     if (token !== config.MCP_API_KEY) {
-      return new Response('Unauthorized', { status: 401 })
+      const debugHeaders: Record<string, string> = {}
+      request.headers.forEach((v, k) => { debugHeaders[k] = v })
+      return new Response(JSON.stringify({ error: 'Unauthorized', received_headers: debugHeaders }), { status: 401, headers: { 'Content-Type': 'application/json' } })
     }
 
     // Build server and register all tools

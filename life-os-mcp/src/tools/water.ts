@@ -120,7 +120,10 @@ export function registerWaterTools(server: McpServer, env: Env) {
     async ({ oz, date }) => {
       const target_date = date ?? new Date().toISOString().split('T')[0]
 
-      await db.from('water_logs').insert({ date: target_date, oz })
+      const { error: insertError } = await db.from('water_logs').insert({ date: target_date, oz })
+      if (insertError) {
+        return { content: [{ type: 'text', text: JSON.stringify({ success: false, message: insertError.message }) }] }
+      }
 
       // Get today's total
       const { data: todayLogs } = await db
