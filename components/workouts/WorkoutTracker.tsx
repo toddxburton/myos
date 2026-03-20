@@ -43,6 +43,7 @@ export default function WorkoutTracker({ library: initialLibrary, initialExercis
 
   // Exercise picker dropdown
   const [pickerOpen, setPickerOpen] = useState(false)
+  const [search, setSearch] = useState('')
   const pickerRef = useRef<HTMLDivElement>(null)
 
   // Template input
@@ -57,6 +58,7 @@ export default function WorkoutTracker({ library: initialLibrary, initialExercis
     const handler = (e: MouseEvent) => {
       if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
         setPickerOpen(false)
+        setSearch('')
       }
     }
     document.addEventListener('mousedown', handler)
@@ -76,8 +78,13 @@ export default function WorkoutTracker({ library: initialLibrary, initialExercis
     return () => document.removeEventListener('mousedown', handler)
   }, [templateOpen])
 
+  const filteredLibrary = search.trim()
+    ? library.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+    : library
+
   const handleSelectExercise = async (item: LibraryItem) => {
     setPickerOpen(false)
+    setSearch('')
     const result = await addExercise(item.id)
     setExercises((prev) => [
       ...prev,
@@ -127,10 +134,21 @@ export default function WorkoutTracker({ library: initialLibrary, initialExercis
           </button>
           {pickerOpen && (
             <div className={styles.dropdown}>
-              {library.length === 0 && (
-                <p className={styles.dropdownEmpty}>No exercises yet</p>
+              <div className={styles.dropdownSearch}>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search..."
+                  autoFocus
+                />
+              </div>
+              {filteredLibrary.length === 0 && (
+                <p className={styles.dropdownEmpty}>
+                  {library.length === 0 ? 'No exercises yet' : 'No matches'}
+                </p>
               )}
-              {library.map((item) => (
+              {filteredLibrary.map((item) => (
                 <button
                   key={item.id}
                   className={styles.dropdownItem}

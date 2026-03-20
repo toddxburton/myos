@@ -6,7 +6,13 @@
 
 .titleZone {
   padding-top: 30px;
-  padding-bottom: var(--space-4);
+  padding-bottom: 45px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
 }
 
 .title {
@@ -14,10 +20,4 @@
   font-weight: var(--weight-light);
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
 }
