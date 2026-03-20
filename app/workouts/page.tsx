@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import { createClient } from '@/lib/supabase/server'
 import WorkoutTracker from '@/components/workouts/WorkoutTracker'
 import styles from './page.module.css'

@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import { createClient } from '@/lib/supabase/server'
 import type { MoodCheckin } from '@/lib/supabase/types'
 import MoodTracker from '@/components/mood/MoodTracker'
