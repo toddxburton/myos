@@ -78,6 +78,14 @@ ul, ol {
   overscroll-behavior: none;
 }
 
+.login-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
 /* ----------------------------------------------------------
    Typography helpers
 ---------------------------------------------------------- */

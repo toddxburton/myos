@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
+import ConditionalShell from '@/components/layout/ConditionalShell'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -27,13 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="app-shell">
-          <AppHeader />
-          <main className="page-content">
-            {children}
-          </main>
-          <BottomNav />
-        </div>
+        <ConditionalShell header={<AppHeader />} nav={<BottomNav />}>
+          {children}
+        </ConditionalShell>
       </body>
     </html>
   )
