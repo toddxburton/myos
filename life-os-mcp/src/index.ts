@@ -32,9 +32,11 @@ export default {
       return new Response('Server misconfigured', { status: 500 })
     }
 
-    // Bearer token auth
+    // Bearer token or API key auth
     const authHeader = request.headers.get('Authorization') ?? ''
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : ''
+    const bearerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader
+    const apiKeyHeader = request.headers.get('X-API-Key') ?? ''
+    const token = bearerToken || apiKeyHeader
     if (token !== config.MCP_API_KEY) {
       return new Response('Unauthorized', { status: 401 })
     }
