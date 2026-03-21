@@ -19,6 +19,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -27,9 +29,8 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
   background-color: var(--color-bg);
-  min-height: 100dvh;
-  /* Prevent horizontal scroll on mobile */
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
 }
 
 img, video, svg {
