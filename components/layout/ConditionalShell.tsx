@@ -17,12 +17,12 @@ export default function ConditionalShell({ children, header, nav }: Props) {
   }
 
   return (
-    <>
+    <div className="app-root">
       <div className="app-shell">
         {header}
         <main className="page-content">{children}</main>
       </div>
       {nav}
-    </>
+    </div>
   )
 }

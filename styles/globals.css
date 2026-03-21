@@ -19,7 +19,6 @@
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  height: 100%;
 }
 
 body {
@@ -28,8 +27,6 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
   background-color: var(--color-bg);
-  height: 100%;
-  overflow: hidden;
 }
 
 img, video, svg {
@@ -61,19 +58,29 @@ ul, ol {
 /* ----------------------------------------------------------
    App shell — contains content above bottom nav
 ---------------------------------------------------------- */
-.app-shell {
+.app-root {
   display: flex;
   flex-direction: column;
   height: 100dvh;
+  overflow: hidden;
+}
+
+.app-shell {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   max-width: var(--max-content-width);
   margin: 0 auto;
+  width: 100%;
   overflow: hidden;
 }
 
 .page-content {
   flex: 1;
+  min-height: 0;
   padding: var(--space-4) 30px;
-  padding-bottom: calc(var(--nav-height) + var(--space-6) + env(safe-area-inset-bottom));
+  padding-bottom: var(--space-6);
   overflow-y: auto;
   overscroll-behavior: none;
 }
