@@ -85,9 +85,11 @@ ul, ol {
   flex: 1;
   min-height: 0;
   padding: var(--space-4) 30px;
-  padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom) + var(--space-6));
+  padding-bottom: var(--space-6);
   overflow-y: auto;
   overscroll-behavior: none;
+  transform: translateZ(0);
+  z-index: 1;
 }
 
 .login-shell {
