@@ -78,14 +78,14 @@ ul, ol {
   max-width: var(--max-content-width);
   margin: 0 auto;
   width: 100%;
-  overflow: clip;
+  overflow: hidden;
 }
 
 .page-content {
   flex: 1;
   min-height: 0;
   padding: var(--space-4) 30px;
-  padding-bottom: var(--space-6);
+  padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom) + var(--space-6));
   overflow-y: auto;
   overscroll-behavior: none;
 }
