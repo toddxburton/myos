@@ -22,35 +22,42 @@ export default async function HabitsPage() {
   const sundayStr = sunday.toISOString().split('T')[0]
 
   const [
-    { data: todayProduce },
+    { data: todayFruits },
+    { data: todayVeggies },
     { data: todayCardio },
     { data: frenchOverride },
     { data: todayVitaminLogs },
     { data: vitamins },
-    { data: allProduce },
+    { data: allFruits },
+    { data: allVeggies },
     { data: allCardioTypes },
-    { data: weekProduce },
+    { data: weekFruits },
+    { data: weekVeggies },
     { data: weekCardio },
     { data: weekFrench },
     { data: weekVitamins },
   ] = await Promise.all([
     supabase.from('fruit_logs').select('id, item_name, servings').eq('date', today).order('created_at'),
+    supabase.from('vegetable_logs').select('id, item_name, servings').eq('date', today).order('created_at'),
     supabase.from('cardio_logs').select('id, type, duration_minutes').eq('date', today).order('created_at'),
     supabase.from('habit_overrides').select('value').eq('date', today).eq('habit_key', 'french').maybeSingle(),
     supabase.from('vitamin_logs').select('vitamin_id, taken').eq('date', today),
     supabase.from('vitamin_definitions').select('id, name').eq('active', true).order('name'),
     supabase.from('fruit_logs').select('item_name'),
+    supabase.from('vegetable_logs').select('item_name'),
     supabase.from('cardio_logs').select('type'),
     supabase.from('fruit_logs').select('date').gte('date', mondayStr).lte('date', sundayStr),
+    supabase.from('vegetable_logs').select('date').gte('date', mondayStr).lte('date', sundayStr),
     supabase.from('cardio_logs').select('date').gte('date', mondayStr).lte('date', sundayStr),
     supabase.from('habit_overrides').select('date').eq('habit_key', 'french').eq('value', true).gte('date', mondayStr).lte('date', sundayStr),
     supabase.from('vitamin_logs').select('date').eq('taken', true).gte('date', mondayStr).lte('date', sundayStr),
   ])
 
-  const knownProduceItems = [...new Set((allProduce ?? []).map((p) => p.item_name))].sort()
+  const todayProduce = [...(todayFruits ?? []), ...(todayVeggies ?? [])]
+  const knownProduceItems = [...new Set([...(allFruits ?? []), ...(allVeggies ?? [])].map((p) => p.item_name))].sort()
   const knownCardioTypes = [...new Set((allCardioTypes ?? []).map((c) => c.type))].sort()
 
-  const produceDates = new Set((weekProduce ?? []).map((p) => p.date))
+  const produceDates = new Set([...(weekFruits ?? []), ...(weekVeggies ?? [])].map((p) => p.date))
   const cardioDates = new Set((weekCardio ?? []).map((c) => c.date))
   const frenchDates = new Set((weekFrench ?? []).map((f) => f.date))
   const vitaminDates = new Set((weekVitamins ?? []).map((v) => v.date))

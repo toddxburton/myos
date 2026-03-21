@@ -137,3 +137,19 @@
 .tooltipAdd:disabled {
   opacity: 0.5;
 }
+
+.finishBtn {
+  margin-top: var(--space-4);
+  padding: 12px var(--space-6);
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+  border-radius: var(--radius-full);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  width: 100%;
+  transition: opacity var(--transition-fast);
+}
+
+.finishBtn:active {
+  opacity: 0.7;
+}

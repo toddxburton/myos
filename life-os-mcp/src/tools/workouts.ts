@@ -220,15 +220,25 @@ export function registerWorkoutTools(server: McpServer, env: Env) {
     async ({ date, name, notes, exercises }) => {
       const target_date = date ?? new Date().toISOString().split('T')[0]
 
-      // Create session
-      const { data: session, error: sessionError } = await db
+      // Get existing session for this date or create one
+      const { data: existing } = await db
         .from('workout_sessions')
-        .insert({ date: target_date, name: name ?? null, notes: notes ?? null })
         .select('id')
-        .single()
+        .eq('date', target_date)
+        .limit(1)
+        .maybeSingle()
 
-      if (sessionError || !session) {
-        return { content: [{ type: 'text', text: JSON.stringify({ success: false, message: sessionError?.message ?? 'Failed to create session' }) }] }
+      let session = existing
+      if (!session) {
+        const { data: created, error: sessionError } = await db
+          .from('workout_sessions')
+          .insert({ date: target_date, name: name ?? null, notes: notes ?? null })
+          .select('id')
+          .single()
+        if (sessionError || !created) {
+          return { content: [{ type: 'text', text: JSON.stringify({ success: false, message: sessionError?.message ?? 'Failed to create session' }) }] }
+        }
+        session = created
       }
 
       let set_count = 0

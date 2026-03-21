@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { addExercise, createTemplate } from '@/app/workouts/actions'
 import ExerciseRow from './ExerciseRow'
 import styles from './WorkoutTracker.module.css'
@@ -38,6 +39,7 @@ interface Props {
 }
 
 export default function WorkoutTracker({ library: initialLibrary, initialExercises }: Props) {
+  const router = useRouter()
   const [exercises, setExercises] = useState<ExerciseEntry[]>(initialExercises)
   const [library, setLibrary] = useState<LibraryItem[]>(initialLibrary)
 
@@ -203,6 +205,12 @@ export default function WorkoutTracker({ library: initialLibrary, initialExercis
           lastPerformance={ex.lastPerformance}
         />
       ))}
+
+      {exercises.length > 0 && (
+        <button className={styles.finishBtn} onClick={() => router.push('/')}>
+          Finish workout
+        </button>
+      )}
     </div>
   )
 }
