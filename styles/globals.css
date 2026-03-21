@@ -27,6 +27,7 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
   background-color: var(--color-bg);
+  overflow: hidden;
 }
 
 img, video, svg {
@@ -85,6 +86,7 @@ ul, ol {
 .page-content {
   flex: 1;
   min-height: 0;
+  height: 0;
   padding: var(--space-4) 30px;
   padding-bottom: var(--space-6);
   overflow-y: auto;
