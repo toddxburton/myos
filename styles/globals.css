@@ -63,7 +63,8 @@ ul, ol {
   top: 0;
   left: 0;
   right: 0;
-  height: var(--app-height, 100svh);
+  min-height: unset;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
