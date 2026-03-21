@@ -19,6 +19,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  height: 100%;
 }
 
 body {
@@ -27,6 +28,8 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
   background-color: var(--color-bg);
+  height: 100%;
+  overflow: hidden;
 }
 
 img, video, svg {
@@ -61,7 +64,7 @@ ul, ol {
 .app-root {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: 100%;
   overflow: hidden;
 }
 
