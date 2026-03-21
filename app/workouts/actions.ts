@@ -1,10 +1,11 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
+import { localToday } from '@/lib/utils/date'
 
 async function getOrCreateTodaySession(): Promise<string> {
   const supabase = await createClient()
-  const today = new Date().toISOString().split('T')[0]
+  const today = localToday()
 
   const { data: existing } = await supabase
     .from('workout_sessions')
@@ -26,7 +27,7 @@ async function getOrCreateTodaySession(): Promise<string> {
 
 async function getLastPerformance(exerciseId: string) {
   const supabase = await createClient()
-  const today = new Date().toISOString().split('T')[0]
+  const today = localToday()
 
   // Find past sessions ordered by date desc
   const { data: pastSessions } = await supabase

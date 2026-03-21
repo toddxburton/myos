@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import { getSupabase } from '../supabase'
+import { localToday } from '../date'
 import type { Env } from '../config'
 
 export function registerWorkoutTools(server: McpServer, env: Env) {
@@ -218,7 +219,7 @@ export function registerWorkoutTools(server: McpServer, env: Env) {
       })).describe('List of exercises with sets'),
     },
     async ({ date, name, notes, exercises }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
 
       // Get existing session for this date or create one
       const { data: existing } = await db
@@ -307,7 +308,7 @@ export function registerWorkoutTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date (YYYY-MM-DD, defaults to today)'),
     },
     async ({ type, duration_minutes, distance_miles, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
 
       await db.from('cardio_logs').insert({
         date: target_date,

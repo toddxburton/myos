@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
+import { localToday } from '@/lib/utils/date'
 
 export async function addExerciseToLibrary(name: string): Promise<{ id: string; name: string }> {
   const supabase = await createClient()
@@ -22,7 +23,7 @@ export async function deleteExerciseFromLibrary(id: string) {
 
 export async function updateWaterGoal(oz: number) {
   const supabase = await createClient()
-  const today = new Date().toISOString().split('T')[0]
+  const today = localToday()
   await supabase
     .from('water_goals')
     .insert({ daily_goal_oz: oz, effective_from: today })

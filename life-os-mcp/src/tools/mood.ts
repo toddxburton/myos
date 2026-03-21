@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import { getSupabase } from '../supabase'
+import { localToday } from '../date'
 import type { Env } from '../config'
 
 export function registerMoodTools(server: McpServer, env: Env) {
@@ -135,7 +136,7 @@ export function registerMoodTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date (YYYY-MM-DD, defaults to today)'),
     },
     async ({ period, energy_level, emotion, intention, reflection, gratitude, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
 
       await db.from('mood_checkins').upsert(
         {

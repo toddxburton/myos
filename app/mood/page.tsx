@@ -1,6 +1,7 @@
 export const runtime = 'edge'
 
 import { createClient } from '@/lib/supabase/server'
+import { localToday, localDayOfWeek, addDays } from '@/lib/utils/date'
 import type { MoodCheckin } from '@/lib/supabase/types'
 import MoodTracker from '@/components/mood/MoodTracker'
 import styles from './page.module.css'
@@ -10,18 +11,13 @@ const DAY_LABELS = ['m', 't', 'w', 'tr', 'f', 's', 'su']
 
 export default async function MoodPage() {
   const supabase = await createClient()
-  const now = new Date()
-  const today = now.toISOString().split('T')[0]
+  const today = localToday()
 
   // Monday of current week
-  const dow = now.getDay()
+  const dow = localDayOfWeek()
   const mondayOffset = dow === 0 ? -6 : 1 - dow
-  const monday = new Date(now)
-  monday.setDate(now.getDate() + mondayOffset)
-  const mondayStr = monday.toISOString().split('T')[0]
-  const sunday = new Date(monday)
-  sunday.setDate(monday.getDate() + 6)
-  const sundayStr = sunday.toISOString().split('T')[0]
+  const mondayStr = addDays(today, mondayOffset)
+  const sundayStr = addDays(mondayStr, 6)
 
   const { data: todayCheckins } = await supabase
     .from('mood_checkins')
@@ -42,9 +38,7 @@ export default async function MoodPage() {
   const typedWeekCheckins = (weekCheckins ?? []) as WeekEntry[]
 
   const weekHistory = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(monday)
-    d.setDate(monday.getDate() + i)
-    const dateStr = d.toISOString().split('T')[0]
+    const dateStr = addDays(mondayStr, i)
     const isFuture = dateStr > today
     const dayEntries = isFuture ? [] : typedWeekCheckins.filter((c) => c.date === dateStr)
     const m = dayEntries.find((c) => c.period === 'morning')

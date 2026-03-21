@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import { getSupabase } from '../supabase'
+import { localToday } from '../date'
 import type { Env } from '../config'
 
 export function registerWaterTools(server: McpServer, env: Env) {
@@ -68,7 +69,7 @@ export function registerWaterTools(server: McpServer, env: Env) {
       const current_goal_oz = goals?.[0]?.daily_goal_oz ?? 64
 
       // Fetch last 90 days of logs
-      const today = new Date().toISOString().split('T')[0]
+      const today = localToday(env.TIMEZONE)
       const ninetyDaysAgo = new Date()
       ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
       const since = ninetyDaysAgo.toISOString().split('T')[0]
@@ -118,7 +119,7 @@ export function registerWaterTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date to log for (YYYY-MM-DD, defaults to today)'),
     },
     async ({ oz, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
 
       const { error: insertError } = await db.from('water_logs').insert({ date: target_date, oz })
       if (insertError) {

@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import { getSupabase } from '../supabase'
+import { localToday } from '../date'
 import type { Env } from '../config'
 
 export function registerFrenchTools(server: McpServer, env: Env) {
@@ -53,7 +54,7 @@ export function registerFrenchTools(server: McpServer, env: Env) {
     {},
     async () => {
       const now = new Date().toISOString()
-      const today = now.split('T')[0]
+      const today = localToday(env.TIMEZONE)
 
       const [{ data: cards }, { data: recentReviews }, { data: dueCards }] = await Promise.all([
         db.from('flashcards').select('id', { count: 'exact' }),
@@ -111,7 +112,7 @@ export function registerFrenchTools(server: McpServer, env: Env) {
     'Get the current consecutive-day streak of French practice (at least one card reviewed per day).',
     {},
     async () => {
-      const today = new Date().toISOString().split('T')[0]
+      const today = localToday(env.TIMEZONE)
       const ninetyDaysAgo = new Date()
       ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
       const since = ninetyDaysAgo.toISOString()

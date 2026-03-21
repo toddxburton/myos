@@ -1,6 +1,7 @@
 export const runtime = 'edge'
 
 import { createClient } from '@/lib/supabase/server'
+import { localToday, localDayOfWeek, addDays } from '@/lib/utils/date'
 import WaterAddButtons from '@/components/water/WaterAddButtons'
 import styles from './page.module.css'
 
@@ -9,8 +10,7 @@ const WEEK_LABELS = ['m', 't', 'w', 'tr', 'f', 's', 'su']
 
 export default async function WaterPage() {
   const supabase = await createClient()
-  const now = new Date()
-  const today = now.toISOString().split('T')[0]
+  const today = localToday()
 
   // Today's total
   const { data: todayLogs } = await supabase
@@ -31,15 +31,10 @@ export default async function WaterPage() {
   const goal = goals?.[0]?.daily_goal_oz ?? 64
 
   // Current week Mon–Sun
-  const dayOfWeek = now.getDay() // 0=Sun
-  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek
-  const monday = new Date(now)
-  monday.setDate(now.getDate() + mondayOffset)
-  const mondayStr = monday.toISOString().split('T')[0]
-
-  const sunday = new Date(monday)
-  sunday.setDate(monday.getDate() + 6)
-  const sundayStr = sunday.toISOString().split('T')[0]
+  const dow = localDayOfWeek()
+  const mondayOffset = dow === 0 ? -6 : 1 - dow
+  const mondayStr = addDays(today, mondayOffset)
+  const sundayStr = addDays(mondayStr, 6)
 
   const { data: weekLogs } = await supabase
     .from('water_logs')
@@ -53,9 +48,7 @@ export default async function WaterPage() {
   })
 
   const weekData = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(monday)
-    d.setDate(monday.getDate() + i)
-    const dateStr = d.toISOString().split('T')[0]
+    const dateStr = addDays(mondayStr, i)
     const isFuture = dateStr > today
     return {
       day: WEEK_LABELS[i],

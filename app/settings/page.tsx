@@ -1,6 +1,7 @@
 export const runtime = 'edge'
 
 import { createClient } from '@/lib/supabase/server'
+import { localToday } from '@/lib/utils/date'
 import ExerciseLibrary from '@/components/settings/ExerciseLibrary'
 import GoalsPanel from '@/components/settings/GoalsPanel'
 import VitaminList from '@/components/settings/VitaminList'
@@ -8,7 +9,7 @@ import styles from './page.module.css'
 
 export default async function SettingsPage() {
   const supabase = await createClient()
-  const today = new Date().toISOString().split('T')[0]
+  const today = localToday()
 
   const [
     { data: exercises },

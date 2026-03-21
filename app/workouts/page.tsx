@@ -1,12 +1,13 @@
 export const runtime = 'edge'
 
 import { createClient } from '@/lib/supabase/server'
+import { localToday } from '@/lib/utils/date'
 import WorkoutTracker from '@/components/workouts/WorkoutTracker'
 import styles from './page.module.css'
 
 export default async function WorkoutsPage() {
   const supabase = await createClient()
-  const today = new Date().toISOString().split('T')[0]
+  const today = localToday()
 
   // Exercise library
   const { data: library } = await supabase

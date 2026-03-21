@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import { getSupabase } from '../supabase'
+import { localToday } from '../date'
 import type { Env } from '../config'
 
 export function registerHabitsTools(server: McpServer, env: Env) {
@@ -78,7 +79,7 @@ export function registerHabitsTools(server: McpServer, env: Env) {
     'Get the current consecutive-day streak for each of the three tracked habits: workout, cardio, and french.',
     {},
     async () => {
-      const today = new Date().toISOString().split('T')[0]
+      const today = localToday(env.TIMEZONE)
       const ninetyDaysAgo = new Date()
       ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
       const since = ninetyDaysAgo.toISOString().split('T')[0]
@@ -178,7 +179,7 @@ export function registerHabitsTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date (YYYY-MM-DD, defaults to today)'),
     },
     async ({ habit_key, value, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
       await db.from('habit_overrides').upsert({ date: target_date, habit_key, value }, { onConflict: 'date,habit_key' })
       return {
         content: [{
@@ -203,7 +204,7 @@ export function registerHabitsTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date (YYYY-MM-DD, defaults to today)'),
     },
     async ({ item_name, servings, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
       await db.from('fruit_logs').insert({ date: target_date, item_name: item_name.trim(), servings })
       return {
         content: [{
@@ -228,7 +229,7 @@ export function registerHabitsTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date (YYYY-MM-DD, defaults to today)'),
     },
     async ({ item_name, servings, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
       await db.from('vegetable_logs').insert({ date: target_date, item_name: item_name.trim(), servings })
       return {
         content: [{
@@ -252,7 +253,7 @@ export function registerHabitsTools(server: McpServer, env: Env) {
       date: z.string().date().optional().describe('Date (YYYY-MM-DD, defaults to today)'),
     },
     async ({ vitamin_names, date }) => {
-      const target_date = date ?? new Date().toISOString().split('T')[0]
+      const target_date = date ?? localToday(env.TIMEZONE)
 
       const { data: definitions } = await db.from('vitamin_definitions').select('id, name').eq('active', true)
       if (!definitions?.length) {
