@@ -73,8 +73,7 @@ ul, ol {
 
 .page-content {
   flex: 1;
-  padding: var(--space-4) 30px;
-  padding-bottom: calc(var(--nav-height) + var(--space-6) + env(safe-area-inset-bottom));
+  padding: var(--space-4) 30px var(--space-6);
   overflow-y: auto;
   overscroll-behavior: none;
 }
