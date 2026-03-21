@@ -1,10 +1,10 @@
 export const runtime = 'edge'
 
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
 import ConditionalShell from '@/components/layout/ConditionalShell'
-import ViewportFix from '@/components/layout/ViewportFix'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -32,7 +32,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ViewportFix />
+        <Script id="viewport-height" strategy="afterInteractive">{`
+          function setAppHeight() {
+            document.documentElement.style.setProperty('--app-height', window.innerHeight + 'px');
+          }
+          setAppHeight();
+          window.addEventListener('resize', setAppHeight);
+        `}</Script>
         <ConditionalShell header={<AppHeader />} nav={<BottomNav />}>
           {children}
         </ConditionalShell>
