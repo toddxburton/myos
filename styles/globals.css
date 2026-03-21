@@ -88,8 +88,7 @@ ul, ol {
   padding-bottom: var(--space-6);
   overflow-y: auto;
   overscroll-behavior: none;
-  transform: translateZ(0);
-  z-index: 1;
+  background: transparent;
 }
 
 .login-shell {
