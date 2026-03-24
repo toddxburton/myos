@@ -6,7 +6,7 @@
 
 .pills {
   display: flex;
-  gap: 16px;
+  gap: var(--space-4);
   align-items: center;
   margin-bottom: 23px;
 }
@@ -19,7 +19,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: 6px 12px;
+  padding: var(--pill-padding);
   background-color: var(--color-surface-raised);
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
@@ -54,7 +54,7 @@
 
 .dropdownSearch input {
   width: 100%;
-  padding: 4px 8px;
+  padding: var(--input-padding);
   background-color: var(--color-surface-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
@@ -107,7 +107,7 @@
 
 .tooltip input {
   width: 140px;
-  padding: 4px 8px;
+  padding: var(--input-padding);
   background-color: var(--color-surface-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
@@ -124,7 +124,7 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--color-text-primary);
-  padding: 4px 10px;
+  padding: var(--btn-padding-sm);
   background-color: var(--color-surface-raised);
   border-radius: var(--radius-full);
   transition: background-color var(--transition-fast);

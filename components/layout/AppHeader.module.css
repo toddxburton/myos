@@ -14,11 +14,11 @@
   font-size: var(--text-lg);
   font-weight: var(--weight-regular);
   color: var(--color-text-primary);
-  padding: 0 30px var(--space-5);
+  padding: 0 var(--page-gutter) var(--space-5);
 }
 
 .divider {
   height: 1px;
-  margin: 0 30px;
+  margin: 0 var(--page-gutter);
   background-color: var(--color-text-primary);
 }

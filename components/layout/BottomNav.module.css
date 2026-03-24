@@ -7,14 +7,15 @@
   align-items: stretch;
   z-index: 2;
   isolation: isolate;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .nav::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 30px;
-  right: 30px;
+  left: var(--page-gutter);
+  right: var(--page-gutter);
   height: 1px;
   background-color: var(--color-text-primary);
 }

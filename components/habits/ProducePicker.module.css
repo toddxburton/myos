@@ -6,7 +6,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: 6px 12px;
+  padding: var(--pill-padding);
   background-color: var(--color-surface-raised);
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
@@ -43,7 +43,7 @@
 
 .searchRow input {
   width: 100%;
-  padding: 4px 8px;
+  padding: var(--input-padding);
   background-color: var(--color-surface-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);

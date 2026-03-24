@@ -93,6 +93,32 @@
   --nav-height:        64px;
   --header-height:     56px;
   --max-content-width: 430px;
+  --page-gutter:       30px;   /* horizontal page padding + title-zone top offset */
+
+  /* ----------------------------------------------------------
+     Section spacing
+  ---------------------------------------------------------- */
+  --space-section:    45px;   /* gap between major content sections */
+  --space-subsection: 13px;   /* gap between items within a section */
+
+  /* ----------------------------------------------------------
+     Component patterns
+  ---------------------------------------------------------- */
+  --pill-padding:    6px 12px; /* standard pill button */
+  --pill-padding-lg: 6px 14px; /* larger pill / action button */
+  --input-padding:   4px 8px;  /* inline input fields */
+  --btn-padding-sm:  4px 10px; /* small confirm / add buttons */
+
+  /* ----------------------------------------------------------
+     Borders
+  ---------------------------------------------------------- */
+  --border-width:    1px;
+  --border-width-md: 1.5px;
+
+  /* ----------------------------------------------------------
+     Overlays
+  ---------------------------------------------------------- */
+  --color-overlay: rgba(0, 0, 0, 0.4);
 
   /* ----------------------------------------------------------
      Transitions

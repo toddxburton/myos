@@ -5,8 +5,8 @@
 }
 
 .titleZone {
-  padding-top: 30px;
-  padding-bottom: 45px;
+  padding-top: var(--page-gutter);
+  padding-bottom: var(--space-section);
 }
 
 .title {
@@ -19,7 +19,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: var(--space-section);
 }
 
 .empty {

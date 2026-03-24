@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: var(--space-section);
 }
 
 /* ── Section layout (matches water page) ─────────────────── */
@@ -9,7 +9,7 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: var(--space-subsection);
 }
 
 .sectionHeader {
@@ -94,7 +94,7 @@
 }
 
 .energyBtn {
-  border: 1.5px solid var(--color-border);
+  border: var(--border-width-md) solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   font-size: var(--text-sm);
@@ -128,7 +128,7 @@
   align-items: center;
   gap: var(--space-1);
   padding: var(--space-3) var(--space-1);
-  border: 1.5px solid var(--color-border);
+  border: var(--border-width-md) solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg);
   cursor: pointer;
@@ -158,7 +158,7 @@
 
 .textarea {
   width: 100%;
-  border: 1.5px solid var(--color-border);
+  border: var(--border-width-md) solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-3);
   font-size: var(--text-base);
@@ -167,7 +167,6 @@
   background: var(--color-bg);
   resize: none;
   line-height: var(--leading-normal);
-  box-sizing: border-box;
   transition: border-color var(--transition-fast);
 }
 
@@ -187,7 +186,7 @@
   flex: 1;
   background: transparent;
   color: var(--color-text-secondary);
-  border: 1.5px solid var(--color-border);
+  border: var(--border-width-md) solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   font-size: var(--text-base);

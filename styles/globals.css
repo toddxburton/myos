@@ -83,7 +83,7 @@ ul, ol {
   flex: 1;
   min-height: 0;
   height: 0;
-  padding: var(--space-4) 30px;
+  padding: var(--space-4) var(--page-gutter);
   padding-bottom: var(--space-6);
   overflow-y: auto;
   overscroll-behavior: none;

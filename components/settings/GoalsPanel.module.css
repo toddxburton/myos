@@ -1,13 +1,13 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: var(--space-section);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: var(--space-subsection);
 }
 
 .sectionLabel {
@@ -38,7 +38,7 @@
 
 .goalInput input {
   width: 52px;
-  padding: 4px 8px;
+  padding: var(--input-padding);
   background-color: var(--color-surface-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
